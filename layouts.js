@@ -30,6 +30,22 @@ function getCookie(name) {
 
 let language = getCookie('language') || 'en';
 
+function initializeHeaderScripts() {
+    const toolsMenuButton = document.getElementById('toolsMenuButton');
+    const toolsMenu = document.getElementById('toolsMenu');
+
+    if (toolsMenuButton && toolsMenu) {
+        toolsMenuButton.addEventListener('click', () => {
+            toolsMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!toolsMenuButton.contains(event.target) && !toolsMenu.contains(event.target)) {
+                toolsMenu.classList.add('hidden');
+            }
+        });
+    }
+}
 
 const basePaths = [
   'https://laylayout.pages.dev/',
@@ -63,8 +79,11 @@ function loadLocalizedComponent(baseName, targetId) {
       })
       .then(html => {
         document.getElementById(targetId).innerHTML = html;
-        if (targetId === 'header' && typeof setLanguageInSelector === 'function') {
-          setLanguageInSelector();
+        if (targetId === 'header') {
+            initializeHeaderScripts();
+            if (typeof setLanguageInSelector === 'function') {
+                setLanguageInSelector();
+            }
         }
       })
       .catch((err) => {
