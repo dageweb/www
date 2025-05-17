@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Developer Tools Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class', // Enables class-based dark mode
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6', // Blue-500
+            accent: '#1e40af'  // Blue-800
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-gradient-to-tr from-blue-100 via-white to-blue-200 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 min-h-screen flex flex-col font-sans transition-all">
+
+  <header id="header" class="w-full bg-white dark:bg-gray-900 border-b border-blue-200 dark:border-gray-700 py-4 px-6 shadow z-10">
+    </header>
+
+  <main class="flex-1 flex flex-col items-center justify-center p-6">
+    <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-8 w-full max-w-3xl border border-blue-200 dark:border-gray-700 text-center">
+      <h1 id="mainTitle" class="text-4xl font-extrabold text-blue-700 dark:text-blue-300 mb-10">Welcome to Our Developer Tools</h1>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-blue-50 dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-blue-200 dark:border-gray-700 hover:shadow-2xl transition-shadow">
+          <h2 id="totpTitle" class="text-2xl font-bold text-primary dark:text-blue-300 mb-3">🔐 TOTP Code Generator</h2>
+          <p id="totpDescription" class="text-gray-700 dark:text-gray-300 mb-6">
+            Generate Time-based One-Time Passwords (TOTP) for your accounts. Keep your online presence secure.
+          </p>
+          <a href="totp-generator.html" id="totpLink" class="inline-block bg-primary hover:bg-accent text-white font-medium py-2 px-6 rounded-lg transition-all shadow-md">
+            Open TOTP Generator
+          </a>
+        </div>
+
+        <div class="bg-blue-50 dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-blue-200 dark:border-gray-700 hover:shadow-2xl transition-shadow">
+          <h2 id="sshTitle" class="text-2xl font-bold text-primary dark:text-blue-300 mb-3">🔑 SSH Key Generator</h2>
+          <p id="sshDescription" class="text-gray-700 dark:text-gray-300 mb-6">
+            Quickly generate strong SSH public and private key pairs for secure server access and communication.
+          </p>
+          <a href="ssh-key-generator.html" id="sshLink" class="inline-block bg-primary hover:bg-accent text-white font-medium py-2 px-6 rounded-lg transition-all shadow-md">
+            Open SSH Key Generator
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="footer" class="w-full bg-white dark:bg-gray-900 border-t border-blue-200 dark:border-gray-700 py-6 px-4 text-center text-sm text-gray-500 dark:text-gray-400">
+    </footer>
+
+  <script src="/layouts.js"></script>
+<script>
+    // Internationalization texts for the index page
+    const texts = {
+      en: {
+        mainTitle: "Welcome to Our Developer Tools",
+        totpTitle: "🔐 TOTP Code Generator",
+        totpDescription: "Generate Time-based One-Time Passwords (TOTP) for your accounts. Keep your online presence secure.",
+        totpLink: "Open TOTP Generator",
+        sshTitle: "🔑 SSH Key Generator",
+        sshDescription: "Quickly generate strong SSH public and private key pairs for secure server access and communication.",
+        sshLink: "Open SSH Key Generator"
+      },
+      fr: {
+        mainTitle: "Bienvenue sur Nos Outils pour Développeurs",
+        totpTitle: "🔐 Générateur de Code TOTP",
+        totpDescription: "Générez des mots de passe à usage unique basés sur le temps (TOTP) pour vos comptes. Sécurisez votre présence en ligne.",
+        totpLink: "Ouvrir le Générateur TOTP",
+        sshTitle: "🔑 Générateur de Clés SSH",
+        sshDescription: "Générez rapidement des paires de clés SSH publiques et privées robustes pour un accès serveur et une communication sécurisés.",
+        sshLink: "Ouvrir le Générateur de Clés SSH"
+      },
+      ja: {
+        mainTitle: "私たちの開発者ツールへようこそ",
+        totpTitle: "🔐 TOTPコードジェネレーター",
+        totpDescription: "アカウント用の時間ベースのワンタイムパスワード（TOTP）を生成します。オンラインでの存在を安全に保ちます。",
+        totpLink: "TOTPジェネレーターを開く",
+        sshTitle: "🔑 SSHキー生成ツール",
+        sshDescription: "安全なサーバーアクセスと通信のために、強力なSSH公開鍵と秘密鍵のペアを迅速に生成します。",
+        sshLink: "SSHキー生成ツールを開く"
+      },
+      zh: {
+        mainTitle: "欢迎使用我们的开发者工具",
+        totpTitle: "🔐 动态验证码生成器",
+        totpDescription: "为您的帐户生成基于时间的一次性密码（TOTP）。确保您的在线安全。",
+        totpLink: "打开动态验证码生成器",
+        sshTitle: "🔑 SSH 密钥生成器",
+        sshDescription: "快速生成强大的 SSH 公钥和私钥对，用于安全的服务器访问和通信。",
+        sshLink: "打开 SSH 密钥生成器"
+      },
+      de: {
+        mainTitle: "Willkommen bei Unseren Entwickler-Tools",
+        totpTitle: "🔐 TOTP-Code-Generator",
+        totpDescription: "Generieren Sie zeitbasierte Einmalpasswörter (TOTP) für Ihre Konten. Sichern Sie Ihre Online-Präsenz.",
+        totpLink: "TOTP-Generator öffnen",
+        sshTitle: "🔑 SSH-Schlüsselgenerator",
+        sshDescription: "Generieren Sie schnell starke öffentliche und private SSH-Schlüsselpaare für sicheren Serverzugriff und Kommunikation.",
+        sshLink: "SSH-Schlüsselgenerator öffnen"
+      },
+      es: {
+        mainTitle: "Bienvenido a Nuestras Herramientas para Desarrolladores",
+        totpTitle: "🔐 Generador de Código TOTP",
+        totpDescription: "Genere contraseñas de un solo uso basadas en tiempo (TOTP) para sus cuentas. Mantenga segura su presencia en línea.",
+        totpLink: "Abrir Generador TOTP",
+        sshTitle: "🔑 Generador de Claves SSH",
+        sshDescription: "Genere rápidamente pares de claves SSH públicas y privadas robustas para un acceso seguro al servidor y comunicación.",
+        sshLink: "Abrir Generador de Claves SSH"
+      }
+    };
+
+    // Assume 'language' variable is defined globally by layouts.js
+    // Fallback to English if 'language' is not set or not found
+    let currentLang = typeof language !== 'undefined' && texts[language] ? language : 'en';
+    let t = texts[currentLang];
+
+    function updateIndexLanguage(translations) {
+      if (!translations) return; // Do nothing if translations are not found
+
+      document.getElementById('mainTitle').textContent = translations.mainTitle;
+      document.getElementById('totpTitle').textContent = translations.totpTitle;
+      document.getElementById('totpDescription').textContent = translations.totpDescription;
+      document.getElementById('totpLink').textContent = translations.totpLink;
+      document.getElementById('sshTitle').textContent = translations.sshTitle;
+      document.getElementById('sshDescription').textContent = translations.sshDescription;
+      document.getElementById('sshLink').textContent = translations.sshLink;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      // Initialize language based on 't' which is set using 'currentLang'
+      updateIndexLanguage(t);
+    });
+
+    // This function should be callable by layouts.js or any language switcher
+    function eventLanguageChanged(newLang) {
+      currentLang = texts[newLang] ? newLang : 'en'; // Fallback to 'en' if newLang is not supported
+      t = texts[currentLang];
+      updateIndexLanguage(t);
+    }
+  </script>
+
+</body>
+</html>
