@@ -6,6 +6,7 @@ function switchLanguage() {
   if (!newLang) return;
 
   document.cookie = `language=${newLang}; path=/; max-age=${60 * 60 * 24 * 365}`;
+  loadPublicComponents();
 
   if (eventLanguageChanged !== null) {
     eventLanguageChanged(newLang);
@@ -81,5 +82,12 @@ function loadLocalizedComponent(baseName, targetId) {
   tryNext();
 }
 
-loadLocalizedComponent('header.html', 'header');
-loadLocalizedComponent('footer.html', 'footer');
+const publicComponents = ['header', 'footer'];
+
+function loadPublicComponents() {
+  componentsToLoad.forEach(componentName => {
+    loadLocalizedComponent(`${componentName}.html`, componentName);
+  });
+}
+
+loadPublicComponents();
