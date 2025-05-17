@@ -6,6 +6,7 @@ function switchLanguage() {
   if (!newLang) return;
 
   document.cookie = `language=${newLang}; path=/; max-age=${60 * 60 * 24 * 365}`;
+  language = newLang;
   loadPublicComponents();
 
   if (eventLanguageChanged !== null) {
