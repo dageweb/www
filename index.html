@@ -117,19 +117,19 @@
 
     // Assume 'language' variable is defined globally by layouts.js
     // Fallback to English if 'language' is not set or not found
-    let currentLang = typeof language !== 'undefined' && texts[language] ? language : 'en';
+
+    let currentLang = language;
     let t = texts[currentLang];
 
-    function updateIndexLanguage(translations) {
-      if (!translations) return; // Do nothing if translations are not found
+    function updateIndexLanguage() {
 
-      document.getElementById('mainTitle').textContent = translations.mainTitle;
-      document.getElementById('totpTitle').textContent = translations.totpTitle;
-      document.getElementById('totpDescription').textContent = translations.totpDescription;
-      document.getElementById('totpLink').textContent = translations.totpLink;
-      document.getElementById('sshTitle').textContent = translations.sshTitle;
-      document.getElementById('sshDescription').textContent = translations.sshDescription;
-      document.getElementById('sshLink').textContent = translations.sshLink;
+      document.getElementById('mainTitle').textContent = t.mainTitle;
+      document.getElementById('totpTitle').textContent = t.totpTitle;
+      document.getElementById('totpDescription').textContent = t.totpDescription;
+      document.getElementById('totpLink').textContent = t.totpLink;
+      document.getElementById('sshTitle').textContent = t.sshTitle;
+      document.getElementById('sshDescription').textContent = t.sshDescription;
+      document.getElementById('sshLink').textContent = t.sshLink;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -141,7 +141,7 @@
     function eventLanguageChanged(newLang) {
       currentLang = texts[newLang] ? newLang : 'en'; // Fallback to 'en' if newLang is not supported
       t = texts[currentLang];
-      updateIndexLanguage(t);
+      updateIndexLanguage();
     }
   </script>
 
