@@ -85,7 +85,7 @@ function loadLocalizedComponent(baseName, targetId) {
 const publicComponents = ['header', 'footer'];
 
 function loadPublicComponents() {
-  componentsToLoad.forEach(componentName => {
+  publicComponents.forEach(componentName => {
     loadLocalizedComponent(`${componentName}.html`, componentName);
   });
 }
