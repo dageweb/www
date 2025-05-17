@@ -5,19 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Developer Tools Hub</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class', // Enables class-based dark mode
-      theme: {
-        extend: {
-          colors: {
-            primary: '#3b82f6', // Blue-500
-            accent: '#1e40af'  // Blue-800
-          }
+<script>
+        tailwind.config = {
+            darkMode: 'class', // Enables class-based dark mode
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6', // Blue-500
+                        accent: '#1e40af'   // Blue-800
+                    }
+                }
+            }
+        };
+
+        const basePathsForLayouts = [
+            'https://laylayout.pages.dev/',
+            'https://raw.githubusercontent.com/wwwdageparty/htmlComponents/refs/heads/master/'
+        ];
+
+        function loadScriptWithFallback() {
+            let scriptLoaded = false;
+            let pathIndex = 0;
+
+            function tryLoad() {
+                if (pathIndex >= basePathsForLayouts.length) {
+                    console.error('Failed to load layouts.js from all specified paths.');
+                    return;
+                }
+
+                const scriptUrl = basePathsForLayouts[pathIndex] + 'layouts.js';
+                const script = document.createElement('script');
+                script.src = scriptUrl;
+                script.async = false; // Ensure scripts are executed in order
+
+                script.onload = () => {
+                    scriptLoaded = true;
+                    console.log(`Successfully loaded layouts.js from ${scriptUrl}`);
+                    // Optionally, you can call a function here that depends on layouts.js
+                };
+
+                script.onerror = () => {
+                    console.warn(`Failed to load layouts.js from ${scriptUrl}. Trying the next path...`);
+                    pathIndex++;
+                    tryLoad();
+                };
+
+                document.head.appendChild(script);
+            }
+
+            tryLoad();
         }
-      }
-    };
-  </script>
+
+        loadScriptWithFallback();
+    </script>
 </head>
 <body class="bg-gradient-to-tr from-blue-100 via-white to-blue-200 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 min-h-screen flex flex-col font-sans transition-all">
 
@@ -55,7 +95,6 @@
   <footer id="footer" class="w-full bg-white dark:bg-gray-900 border-t border-blue-200 dark:border-gray-700 py-6 px-4 text-center text-sm text-gray-500 dark:text-gray-400">
     </footer>
 
-  <script src="/layouts.js"></script>
 <script>
     // Internationalization texts for the index page
     const texts = {
