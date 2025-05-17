@@ -28,7 +28,7 @@ function getCookie(name) {
   return null;
 }
 
-const language = getCookie('language') || 'en';
+let language = getCookie('language') || 'en';
 
 
 const basePaths = [
